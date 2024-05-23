@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import type { Metadata } from 'next';
-import Navbar from './navbar.tsx';
+import Navbar from './navbar';
 import { Inter } from 'next/font/google';
 import './globals.css';
 
