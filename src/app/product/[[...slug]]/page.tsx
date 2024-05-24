@@ -8,7 +8,7 @@ export default function DetailProduct({
     console.log(params);
     return (
         <div>
-            <h1>{psrams.slug ? 'Detail Product' : 'Product'}</h1>
+            <h1>{params.slug ? 'Detail Product' : 'Product'}</h1>
             {params.slug && (
                 <>
                     <p>Category : {params.slug[0]}</p>
