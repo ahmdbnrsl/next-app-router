@@ -9,7 +9,7 @@ export default function Register() {
                         className='space-y-6'
                         action='#'
                     >
-                        <h3 class='text-xl font-medium text-gray-900 dark:text-white'>
+                        <h3 className='text-xl font-medium text-gray-900 dark:text-white'>
                             Sign up to our platform
                         </h3>
                         <div>

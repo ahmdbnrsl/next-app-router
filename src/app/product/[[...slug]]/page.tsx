@@ -1,7 +1,10 @@
-type DetailProductProps = { params: { slug: Array<string> } };
+type DetailProductProps = { slug: Array<string> };
 
-export default function DetailProduct(props: DetailProductProps) {
-    const { params } = props;
+export default function DetailProduct({
+    params
+}: {
+    params: DetailProductProps;
+}) {
     console.log(params);
     return (
         <div>
