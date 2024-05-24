@@ -70,7 +70,7 @@ export default function Register() {
                             registered?{' '}
                             <Link
                                 href='/login'
-                                class='text-blue-700 hover:underline dark:text-blue-500'
+                                className='text-blue-700 hover:underline dark:text-blue-500'
                             >
                                 Login to your account
                             </Link>

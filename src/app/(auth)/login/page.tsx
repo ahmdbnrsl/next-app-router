@@ -54,7 +54,7 @@ export default function Login() {
                             Not registered?{' '}
                             <Link
                                 href='/register'
-                                class='text-blue-700 hover:underline dark:text-blue-500'
+                                className='text-blue-700 hover:underline dark:text-blue-500'
                             >
                                 Create account
                             </Link>
