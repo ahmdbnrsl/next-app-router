@@ -2,11 +2,13 @@
 
 import { useState } from 'react';
 import type { Metadata } from 'next';
+import { usePathname } from 'next/navigation';
 import Navbar from './navbar';
 import { Inter } from 'next/font/google';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
+const disableNavbar: Array<string> = ['/login', '/register'];
 
 // export const metadata: Metadata = {
 //     title: 'Create Next App',
@@ -19,11 +21,12 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     const [state, setState] = useState<number>(0);
+    const pathName = usePathname();
     return (
         <html lang='en'>
             <body className={inter.className}>
-                <Navbar />
-                <div>
+                {!disableNavbar.includes(pathName) && <Navbar />}
+                {/*<div>
                     <h1>Layout {state}</h1>
                     <button
                         onClick={() => {
@@ -32,7 +35,7 @@ export default function RootLayout({
                     >
                         click
                     </button>
-                </div>
+                </div>*/}
                 {children}
             </body>
         </html>
