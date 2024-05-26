@@ -1,13 +1,24 @@
+'use client';
 import Link from 'next/link';
 
 export default function Login() {
+    const HandleLogin = (e: any) => {
+        e.preventDefault();
+        fetch('/api/auth/login', {
+            method: 'POST',
+            body: JSON.stringify({
+                email: e.currentTarget.email.value,
+                password: e.currentTarget.password.value
+            })
+        });
+    };
     return (
         <div className='w-full min-h-screen flex justify-center items-center'>
             <div className='max-w-2xl mx-auto'>
                 <div className='bg-white shadow-md border border-gray-200 rounded-lg max-w-sm p-4 sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700'>
                     <form
                         className='space-y-6'
-                        action='#'
+                        onSubmit={() => HandleLogin(e)}
                     >
                         <h3 className='text-xl font-medium text-gray-900 dark:text-white'>
                             Sign in to our platform
