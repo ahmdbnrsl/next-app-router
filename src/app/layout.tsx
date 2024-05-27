@@ -24,7 +24,7 @@ export default function RootLayout({
     const pathName = usePathname();
     return (
         <html lang='en'>
-            <body className={inter.className}>
+            <body className={`${inter.className} w-full min-h-screen bg-white dark:bg-gray-950`}>
                 {!disableNavbar.includes(pathName) && <Navbar />}
                 {/*<div>
                     <h1>Layout {state}</h1>
