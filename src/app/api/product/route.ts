@@ -3,18 +3,21 @@ import { NextResponse, NextRequest } from 'next/server';
 interface Product {
     id: number | string;
     name: string;
+    image?: string;
     price: string | number;
 }
 
 const data: Array<Product> = [
     {
         id: 1,
-        name: 'shoes',
+        title: 'shoes',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLNnEdGQ7fdegJuVMDgl1pF95NMaOsK8TGRw&usqp=CAU',
         price: 1000000
     },
     {
         id: 2,
-        name: 'uniform',
+        title: 'uniform',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLNnEdGQ7fdegJuVMDgl1pF95NMaOsK8TGRw&usqp=CAU',
         price: 300000
     }
 ];
@@ -38,5 +41,5 @@ export async function GET(request: NextRequest) {
             data: {}
         });
     }
-    return NextResponse.json({ status: 200, message: 'success' });
+    return NextResponse.json({ status: 200, message: 'success', data });
 }

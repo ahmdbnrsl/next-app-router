@@ -1,7 +1,8 @@
 type ProductProps = { slug: Array<string> };
 
 async function fetchData() {
-    const res = await fetch('https://fakestoreapi.com/products');
+    // const res = await fetch('https://fakestoreapi.com/products');
+    const res = await fetch('/api/product', { cache: 'no-store' });
     if (!res.ok) {
         throw new Error('Failed to fetch');
     }
@@ -16,20 +17,20 @@ export default async function Product({ params }: { params: ProductProps }) {
             {products.length > 0 &&
                 products.map((product: any) => (
                     <div
-                        key={product.id}
+                        key={product.data.id}
                         className='place-items-center w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'
                     >
                         <a href='#'>
                             <img
                                 className='w-full p-8 rounded-t-lg object-cover h-96'
-                                src={product.image}
+                                src={product.data.image}
                                 alt='product image'
                             />
                         </a>
                         <div className='px-5 pb-5'>
                             <a href='#'>
                                 <h5 className='text-xl font-semibold tracking-tight text-gray-900 dark:text-white truncate'>
-                                    {product.title}
+                                    {product.data.title}
                                 </h5>
                             </a>
                             <div className='flex items-center mt-2.5 mb-5'>
@@ -86,7 +87,7 @@ export default async function Product({ params }: { params: ProductProps }) {
                             </div>
                             <div className='flex items-center justify-between'>
                                 <span className='text-3xl font-bold text-gray-900 dark:text-white'>
-                                    ${product.price}
+                                    ${product.data.price}
                                 </span>
                                 <a
                                     href='#'
