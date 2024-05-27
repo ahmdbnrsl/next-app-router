@@ -17,23 +17,23 @@ export default async function Product({ params }: { params: ProductProps }) {
     const products = await fetchData();
     return (
         <div className='grid grid-cols-auto-fit gap-5'>
-            {products.length > 0 &&
-                products.map((product: any) => (
+            {products.data.length > 0 &&
+                products.data.map((product: any) => (
                     <div
-                        key={product.data.id}
+                        key={product.id}
                         className='place-items-center w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'
                     >
                         <a href='#'>
                             <img
                                 className='w-full p-8 rounded-t-lg object-cover h-96'
-                                src={product.data.image}
+                                src={product.image}
                                 alt='product image'
                             />
                         </a>
                         <div className='px-5 pb-5'>
                             <a href='#'>
                                 <h5 className='text-xl font-semibold tracking-tight text-gray-900 dark:text-white truncate'>
-                                    {product.data.title}
+                                    {product.title}
                                 </h5>
                             </a>
                             <div className='flex items-center mt-2.5 mb-5'>
@@ -90,7 +90,7 @@ export default async function Product({ params }: { params: ProductProps }) {
                             </div>
                             <div className='flex items-center justify-between'>
                                 <span className='text-3xl font-bold text-gray-900 dark:text-white'>
-                                    ${product.data.price}
+                                    ${product.price}
                                 </span>
                                 <a
                                     href='#'
