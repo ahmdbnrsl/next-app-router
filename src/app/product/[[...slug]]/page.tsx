@@ -4,7 +4,10 @@ async function fetchData() {
     // const res = await fetch('https://fakestoreapi.com/products');
     const res = await fetch(
         'https://next-app-router-gamma.vercel.app/api/product',
-        { cache: 'no-store' }
+        {
+            cache: 'force-cache',
+            next: { tags: ['products'] /*revalidate: 30*/ }
+        }
     );
     if (!res.ok) {
         throw new Error('Failed to fetch');
