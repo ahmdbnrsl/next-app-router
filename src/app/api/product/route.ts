@@ -2,7 +2,7 @@ import { NextResponse, NextRequest } from 'next/server';
 
 interface Product {
     id: number | string;
-    name: string;
+    title: string;
     image?: string;
     price: string | number;
 }
