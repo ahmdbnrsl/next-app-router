@@ -28,7 +28,7 @@ export default async function Product({ params }: { params: ProductProps }) {
                         </a>
                         <div className='px-5 pb-5'>
                             <a href='#'>
-                                <h5 class='text-xl font-semibold tracking-tight text-gray-900 dark:text-white truncate'>
+                                <h5 className='text-xl font-semibold tracking-tight text-gray-900 dark:text-white truncate'>
                                     {product.title}
                                 </h5>
                             </a>
@@ -85,7 +85,7 @@ export default async function Product({ params }: { params: ProductProps }) {
                                 </span>
                             </div>
                             <div className='flex items-center justify-between'>
-                                <span class='text-3xl font-bold text-gray-900 dark:text-white'>
+                                <span className='text-3xl font-bold text-gray-900 dark:text-white'>
                                     ${product.price}
                                 </span>
                                 <a
