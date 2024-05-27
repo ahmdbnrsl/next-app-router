@@ -2,7 +2,10 @@ type ProductProps = { slug: Array<string> };
 
 async function fetchData() {
     // const res = await fetch('https://fakestoreapi.com/products');
-    const res = await fetch('/api/product', { cache: 'no-store' });
+    const res = await fetch(
+        'https://next-app-router-gamma.vercel.app/api/product',
+        { cache: 'no-store' }
+    );
     if (!res.ok) {
         throw new Error('Failed to fetch');
     }
