@@ -21,7 +21,7 @@ export default function AboutLayout({
                     </Link>
                     <Link href='/about/profile'>
                         <li className='mr-3 text-blue-300 cursor-pointer'>
-                            Profile
+                            Profiles
                         </li>
                     </Link>
                 </ul>
