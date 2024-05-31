@@ -1,5 +1,5 @@
 import { fetchData } from '@/services/products';
-import Link from 'next/navigation';
+import Link from 'next/link';
 type ProductProps = { slug: Array<string> };
 
 export default async function Product({ params }: { params: ProductProps }) {
