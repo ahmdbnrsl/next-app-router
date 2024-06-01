@@ -24,7 +24,7 @@ export default async function Product({ params }: { params: ProductProps }) {
 
                         <div className='px-5 pb-5'>
                             <h5 className='text-xl font-semibold tracking-tight text-gray-900 dark:text-white truncate'>
-                                {product.title}
+                                {product.name}
                             </h5>
 
                             <div className='flex items-center mt-2.5 mb-5'>
