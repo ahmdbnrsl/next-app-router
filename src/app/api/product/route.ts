@@ -1,5 +1,5 @@
 import { NextResponse, NextRequest } from 'next/server';
-import { retrieveDataById } from '@/lib/firebase/service';
+import { retrieveDataById, retrieveData } from '@/lib/firebase/service';
 
 interface Product {
     id: number | string;
