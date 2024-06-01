@@ -21,6 +21,6 @@ export async function retrieveData(collectionName: string) {
 
 export async function retrieveDataById(collectionName: string, id: string) {
     const snapshot = await getDoc(doc(firestore, collectionName, id));
-    const data = snapshot.data;
+    const data = snapshot.data();
     return data;
 }
