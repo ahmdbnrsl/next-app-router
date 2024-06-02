@@ -13,10 +13,12 @@
         "react-dom": "^18",
         "next": "14.2.3",
         "firebase": "latest",
-        "next-auth": "latest"
+        "next-auth": "latest",
+        "bcrypt": "latest"
     },
     "devDependencies": {
         "typescript": "^5",
+        "@types/bcrypt": "latest",
         "@types/node": "^20",
         "@types/react": "^18",
         "@types/react-dom": "^18",

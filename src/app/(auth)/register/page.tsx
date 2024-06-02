@@ -1,11 +1,42 @@
+'use client';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 export default function Register() {
+    const { push } = useRouter();
+    const [error, setError] = useState<string>('');
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const HandleRegister = async (e: any) => {
+        e.preventDefault();
+        setError('');
+        setIsLoading(true);
+        const res = await fetch('/api/auth/register', {
+            method: 'POST',
+            body: JSON.stringify({
+                fullname: e.target.fullname.value,
+                email: e.target.email.value,
+                password: e.target.password.value
+            })
+        });
+        if (res.status === 200) {
+            e.target.reset();
+            setIsLoading(false);
+            push('/login');
+        } else {
+            setError('Email Already Exist');
+            setIsLoading(false);
+        }
+    };
     return (
-        <div className='w-full min-h-screen flex justify-center items-center'>
+        <div className='w-full min-h-screen flex-col flex justify-center items-center'>
+            {error !== '' && (
+                <div className='text-red-600 font-bold mb-3'>{error}</div>
+            )}
             <div className='max-w-2xl mx-auto'>
                 <div className='bg-white shadow-md border border-gray-200 rounded-lg max-w-sm p-4 sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700'>
                     <form
+                        onSubmit={e => HandleRegister(e)}
                         className='space-y-6'
                         action='#'
                     >
