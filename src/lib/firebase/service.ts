@@ -69,3 +69,21 @@ export async function register(data: {
         }
     }
 }
+
+export async function login(data: { email: string }) {
+    const q = query(
+        collection(firestore, 'users'),
+        where('email', '==', data.email)
+    );
+
+    const user = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+    }));
+
+    if (user) {
+        return user[0];
+    } else {
+        return null;
+    }
+}

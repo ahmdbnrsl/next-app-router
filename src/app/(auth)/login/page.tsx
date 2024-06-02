@@ -2,11 +2,16 @@
 import Link from 'next/link';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 export default function Login() {
     const { push } = useRouter();
+    const [error, setError] = useState<string>('');
+    const [isLoading, setIsLoading] = useState<boolean>(false);
     const HandleLogin = async (e: any) => {
         e.preventDefault();
+        setError('');
+        setIsLoading(true);
         try {
             const res = await signIn('credentials', {
                 redirect: false,
@@ -15,9 +20,14 @@ export default function Login() {
                 callbackUrl: '/dashboard'
             });
             if (!res?.error) {
+                e.target.reset();
+                setIsLoading(false);
                 push('/dashboard');
             } else {
-                console.log(res.error);
+                if (res.status === 401) {
+                    setIsLoading(false);
+                    setError('email or password is incorrect');
+                }
             }
         } catch (err) {
             console.error(err);
@@ -31,9 +41,12 @@ export default function Login() {
         });
     };
     return (
-        <div className='w-full min-h-screen flex justify-center items-center'>
+        <div className='w-full min-h-screen flex flex-col justify-center items-center'>
+            {error !== '' && (
+                <div className='text-red-600 font-bold mb-3'>{error}</div>
+            )}
             <div className='max-w-2xl mx-auto'>
-                <div className='bg-white shadow-md border border-gray-200 rounded-lg max-w-sm p-4 sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700'>
+                <div className='bg-white shadow-md border border-gray-200 rounded-lg max-w-md p-4 sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700'>
                     <form
                         className='space-y-6'
                         onSubmit={e => HandleLogin(e)}
@@ -74,10 +87,11 @@ export default function Login() {
                             />
                         </div>
                         <button
+                            disabled={isLoading}
                             type='submit'
                             className='w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
                         >
-                            Login to your account
+                            {isLoading ? 'loading...' : 'Login'}
                         </button>
                         <div className='text-sm font-medium text-gray-500 dark:text-gray-300'>
                             Not registered?{' '}
