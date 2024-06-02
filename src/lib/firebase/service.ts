@@ -75,7 +75,7 @@ export async function login(data: { email: string }) {
         collection(firestore, 'users'),
         where('email', '==', data.email)
     );
-
+    const snapshot = await getDocs(q);
     const user = snapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data()
