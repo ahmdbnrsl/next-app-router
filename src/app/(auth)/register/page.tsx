@@ -34,7 +34,7 @@ export default function Register() {
                 <div className='text-red-600 font-bold mb-3'>{error}</div>
             )}
             <div className='max-w-2xl mx-auto'>
-                <div className='bg-white shadow-md border border-gray-200 rounded-lg max-w-md p-4 sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700'>
+                <div className='bg-white shadow-md border border-gray-200 rounded-lg w-full max-w-md p-4 sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700'>
                     <form
                         onSubmit={e => HandleRegister(e)}
                         className='space-y-6'
