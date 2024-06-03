@@ -4,10 +4,12 @@ import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-export default function Login() {
+export default function LoginPage({ searchParams }: any) {
     const { push } = useRouter();
     const [error, setError] = useState<string>('');
     const [isLoading, setIsLoading] = useState<boolean>(false);
+
+    const callbackUrl = searchParams.callbackUrl || '/';
     const HandleLogin = async (e: any) => {
         e.preventDefault();
         setError('');
@@ -17,12 +19,12 @@ export default function Login() {
                 redirect: false,
                 email: e.target.email.value,
                 password: e.target.password.value,
-                callbackUrl: '/dashboard'
+                callbackUrl
             });
             if (!res?.error) {
                 e.target.reset();
                 setIsLoading(false);
-                push('/dashboard');
+                push(callbackUrl);
             } else {
                 if (res.status === 401) {
                     setIsLoading(false);

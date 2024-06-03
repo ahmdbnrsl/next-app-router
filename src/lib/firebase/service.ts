@@ -51,7 +51,7 @@ export async function register(data: {
             statusCode: 400
         };
     } else {
-        data.role = 'admin';
+        data.role = 'member';
         data.password = await bcrypt.hash(data.password, 10);
         try {
             await addDoc(collection(firestore, 'users'), data);

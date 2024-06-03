@@ -1,10 +1,9 @@
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { signIn, signOut, useSession } from 'next-auth/react';
 
 export default function Navbar() {
     const pathName = usePathname();
-    const router = useRouter();
     const { data: session, status }: { data: any; status: string } =
         useSession();
     return (

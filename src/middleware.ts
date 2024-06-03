@@ -1,16 +1,10 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import withAuth from './middlewares/withAuth';
 
-export function middleware(request: NextRequest) {
-    /* if (request.nextUrl.pathName.startWith('/about')) {
-        return NextResponse.redirect(new URL('/', request.url));
-    }*/
-    const isLogin = true;
-    if (!isLogin) {
-        return NextResponse.redirect(new URL('/login', request.url));
-    }
+export function mainMiddleware(request: NextRequest) {
+    const res = NextResponse.next();
+    return res;
 }
 
-export const config = {
-    matcher: ['/dashboard/:path*']
-};
+export default withAuth(mainMiddleware, ['/dashboard', '/profile']);
