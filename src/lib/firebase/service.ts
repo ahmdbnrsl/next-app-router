@@ -4,6 +4,7 @@ import {
     doc,
     getDoc,
     addDoc,
+    updateDoc,
     getDocs,
     query,
     where
@@ -85,5 +86,29 @@ export async function login(data: { email: string }) {
         return user[0];
     } else {
         return null;
+    }
+}
+
+export async function loginWithGoogle(data: any, callbacks: any) {
+    const q = query(
+        collection(firestore, 'users'),
+        where('email', '==', data.email)
+    );
+    const snapshot = await getDocs(q);
+    const user: any = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+    }));
+
+    if (user.length > 0) {
+        data.role = user[0].role;
+        await updateDoc(doc(firestore, 'users', user[0].id), data).then(() => {
+            callbacks({ status: true, data });
+        });
+    } else {
+        data.role = 'member';
+        await addDoc(collection(firestore, 'users'), data).then(() => {
+            callbacks({ status: true, data });
+        });
     }
 }
