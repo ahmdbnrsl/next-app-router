@@ -1,5 +1,6 @@
 import { fetchData } from '@/services/products';
 import Link from 'next/link';
+import Image from 'next/image';
 type ProductProps = { slug: Array<string> };
 
 export default async function Product({ params }: { params: ProductProps }) {
@@ -16,10 +17,13 @@ export default async function Product({ params }: { params: ProductProps }) {
                         key={product.id}
                         className='place-items-center w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'
                     >
-                        <img
+                        <Image
                             className='w-full p-8 rounded-t-lg object-cover h-96'
                             src={product.image}
                             alt='product image'
+                            width={1000}
+                            height={1000}
+                            loading='lazy'
                         />
 
                         <div className='px-5 pb-5'>
