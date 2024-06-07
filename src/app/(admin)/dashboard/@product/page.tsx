@@ -4,7 +4,7 @@ export default function AdminProductPage() {
     const [status, setStatus] = useState('');
     const revalidate = async () => {
         const res = await fetch(
-            'https://next-app-router-gamma.vercel.app/api/revalidate?tag=products&secret=via',
+            `${process.env.NEXT_PUBLIC_API_URL}/api/revalidate?tag=products&secret=via`,
             { method: 'POST' }
         );
         if (!res.ok) {

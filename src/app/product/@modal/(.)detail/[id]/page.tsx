@@ -1,25 +1,32 @@
-import { fetchData } from '@/services/products';
+'use client';
+
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
+import useSWR from 'swr';
 
 const Modal = dynamic(() => import('@/components/core/Modal'));
+const fetcher = (url: string) => fetch(url).then(res => res.json());
 
-export default async function DetailProductPage(props: any) {
+export default function DetailProductPage(props: any) {
     const { params } = props;
-    const product = await fetchData(
-        'https://next-app-router-gamma.vercel.app/api/product/?id=' + params.id
+    const { data, error, isLoading } = useSWR(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/product/?id=${params.id}`,
+        fetcher
     );
+    const product = {
+        data: data?.data
+    };
     return (
         <Modal>
             <Image
-                src={product.data.image}
-                alt={product.data.name}
+                src={product?.data?.image}
+                alt={product?.data?.name}
                 className='w-full object-cover aspect-square col-span-2'
                 width={5000}
                 height={5000}
             />
             <div className='bg-white p-4 px-6'>
-                <h3>{product.data.name}</h3>
+                <h3>{product?.data?.name}</h3>
             </div>
         </Modal>
     );
